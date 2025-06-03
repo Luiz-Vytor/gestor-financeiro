@@ -16,8 +16,21 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://localhost:8080/';
+    public string $baseURL = '';
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Verifica se o ambiente é de desenvolvimento ou produção
+        if (ENVIRONMENT === 'development') {
+            // Carrega a URL base para o desenvolvimento
+            $this->baseURL = 'http://localhost/gestor-financeiro/public';  // URL para desenvolvimento
+        } else {
+            // Carrega a URL base para a produção (caso seja um ambiente de produção)
+            $this->baseURL = 'https://www.seusite.com.br/';  // URL para produção
+        }
+    }
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
      * If you want to accept multiple Hostnames, set this.
