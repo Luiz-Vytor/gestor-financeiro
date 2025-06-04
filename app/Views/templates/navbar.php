@@ -6,7 +6,10 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/produtos/listar" class="nav-link">Home</a>
+      <a href="
+      
+      
+      /transactions" class="nav-link">Transações</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="https://api.whatsapp.com/send/?phone=%2B5588981672990&text&type=phone_number&app_absent=0" class="nav-link">Contact</a>
