@@ -14,19 +14,19 @@ class TransactionsTable extends Migration
                 'constraint' => 11,
                 'auto_increment' => true
             ],
-            'id_company' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'name' => [
+            'type' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'cnpj' => [
+            'category' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'phone' => [
+            'value' => [
+                'type'       => 'DECIMAL',
+                'constraint' => '10,2',
+            ],
+            'description' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],

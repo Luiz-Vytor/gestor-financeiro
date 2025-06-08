@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Transactions extends Model
+class TransactionsModel extends Model
 {
     protected $table            = 'transactions';
     protected $primaryKey       = 'id';
@@ -13,7 +13,7 @@ class Transactions extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id', 'id_company', 'name', 'cnpj', 'phone', 'created_at', 'updated_at', 'deleted_at'
+        'id', 'type', 'category', 'value', 'description', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -23,7 +23,7 @@ class Transactions extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

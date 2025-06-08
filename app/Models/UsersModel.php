@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Companies extends Model
+class UsersModel extends Model
 {
-    protected $table            = 'companies';
+    protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id', 'type', 'category', 'value', 'description', 'created_at', 'updated_at', 'deleted_at'
+        'id', 'id_company', 'username', 'password', 'name', 'email', 'phone', 'cargo', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     protected bool $allowEmptyInserts = false;

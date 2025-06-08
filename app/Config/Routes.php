@@ -7,3 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Auth::index');
 $routes->get('/transactions', 'Home::index');
+
+$routes->post('/transactions/register', 'Transactions::register');

@@ -14,19 +14,15 @@ class CompaniesTable extends Migration
                 'constraint' => 11,
                 'auto_increment' => true
             ],
-            'type' => [
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'category' => [
+            'cnpj' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'value' => [
-                'type'       => 'DECIMAL',
-                'constraint' => '10,2',
-            ],
-            'description' => [
+            'phone' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
