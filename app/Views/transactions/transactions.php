@@ -106,6 +106,19 @@
                                                 <td><?= $transaction['category'] ?></td>
                                                 <td><?= $transaction['value'] ?></td>
                                                 <td><?= date('d/m/Y', strtotime(trim($transaction['created_at']))) ?></td>
+
+                                                <?php
+                                                $dataTransaction = json_encode($transaction);
+                                                ?>
+
+                                                <td>
+                                                    <button type="button" data-toggle="modal" data-target="#modal-edit-transaction" class="btn btn-warning edit-btn">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <a href="<?= base_url("transactions/delete?id=") . $transaction['id'] ?>" class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
                                             <?php endforeach; ?>
                                         </tr>
                                     </tbody>
@@ -187,3 +200,99 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal De Editar Transação -->
+    <div class="modal fade" id="modal-edit-transaction">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form action="<?= base_url("transactions/register") ?>" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Novo Registro</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">DESCRIÇÃO</label>
+                                    <textarea class="form-control" id="description_edit" name="description" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="">TIPO</label>
+                                    <select class="form-control type_edit" name="type_edit" id="select-type" required>
+                                        <option selected disabled value="">Selecione um tipo</option>
+                                        <option value="Receita">Receita</option>
+                                        <option value="Despesa">Despesa</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="">VALOR</label>
+                                    <input placeholder="Digite o valor" id="value_edit" type="number" class="form-control" name="value" required>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="">DATA</label>
+                                    <input type="date" id="data_edit" class="form-control data_edit" name="date" required>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="">CATEGORIA</label>
+                                    <select class="form-control category_edit" name="category" id="select-type" required>
+                                        <option selected disabled value="">Selecione uma categoria</option>
+                                        <option value="Alimentação">Alimentação</option>
+                                        <option value="Transporte">Transporte</option>
+                                        <option value="Salário">Salário</option>
+                                        <option value="Gastos Extras">Gastos Extras</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+
+            const rows = document.querySelectorAll('table tbody tr'); 
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td'); 
+
+                const description = cells[0].innerHTML; 
+                const type = cells[1].innerHTML; 
+                const category = cells[2].innerHTML; 
+                const value = cells[3].innerHTML; 
+                const createdAt = cells[4].innerHTML; 
+
+                const editButton = row.querySelector('.edit-btn');
+                editButton.addEventListener('click', function() {
+
+                    document.getElementById("description_edit").value = description
+                    document.querySelector(".type_edit").value = type
+                    document.getElementById("value_edit").value = value
+                    document.querySelector(".data_edit").value = new Date(createdAt).toISOString().split('T')[0];
+                    document.querySelector(".category_edit").value = category
+
+
+                });
+            });
+
+        });
+    </script>
