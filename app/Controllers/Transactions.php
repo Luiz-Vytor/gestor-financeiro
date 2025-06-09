@@ -25,4 +25,18 @@ class Transactions extends BaseController
             return redirect()->to('transactions');
         }
     }
+
+    public function delete()
+    {
+        try {
+            $idTransaction = $this->request->getGet('id');
+
+            $transactionModel = new TransactionsModel();
+            $transactionModel->delete($idTransaction);
+
+            return redirect()->to('transactions');
+        } catch (\Throwable $th) {
+            return redirect()->to('transactions');
+        }
+    }
 }
