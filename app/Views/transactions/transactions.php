@@ -6,49 +6,34 @@
     <!-- /.content-header -->
 
     <!-- Small boxes (Stat box) -->
-    <div class="row">
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>150</h3>
+    <div class="d-flex flex-row justify-content-around">
 
-                    <p>New Orders</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3><?= $totalRevenues ?><sup style="font-size: 20px"></sup></h3>
 
-                    <p>Bounce Rate</p>
+                    <p>Receitas Totais</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3><?= $currentBalance ?></h3>
 
-                    <p>User Registrations</p>
+                    <p>Saldo Atual</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -56,14 +41,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <h3><?= $totalExpenses ?></h3>
 
-                    <p>Unique Visitors</p>
+                    <p>Despesas Totais</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -99,8 +83,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <?php foreach ($transactions as $transaction) : ?>
+                                        <?php foreach ($transactions as $transaction) : ?>
+
+                                            <tr>
                                                 <td class="d-none"><?= $transaction['id'] ?></td>
                                                 <td><?= $transaction['description'] ?></td>
                                                 <td><?= $transaction['type'] ?></td>
@@ -116,8 +101,9 @@
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>
-                                            <?php endforeach; ?>
-                                        </tr>
+                                            </tr>
+                                        <?php endforeach; ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -202,14 +188,14 @@
     <div class="modal fade" id="modal-edit-transaction">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form action="<?= base_url("transactions/edit") ?>" method="post">
+                <form action="<?= base_url("transactions/editTransaction") ?>" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Edição do Registro</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <input class="d-none" id="idTransaction" name="idTransaction" required>
+                    <input type="hidden" class="idTransaction" id="idTransaction" name="idTransaction" required>
 
                     <div class="modal-body">
                         <div class="row">
@@ -305,41 +291,31 @@
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
 
-            /*const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            const rows = document.querySelectorAll('table tbody tr');
 
-            document.querySelectorAll('.delete-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const transactionId = this.getAttribute('data-id');
-                    const deleteUrl = `<?= base_url("transactions/delete?id=") ?>${transactionId}`;
-                    confirmDeleteBtn.setAttribute('href', deleteUrl);
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+
+                const idTransaction = cells[0].innerHTML;
+                const description = cells[1].innerHTML;
+                const type = cells[2].innerHTML;
+                const category = cells[3].innerHTML;
+                const value = cells[4].innerHTML;
+                const createdAt = cells[5].innerHTML;
+
+                const editButton = row.querySelector('.edit-btn');
+                editButton.addEventListener('click', function() {
+
+                    console.log(idTransaction, 'idTransaction')
+
+                    document.querySelector(".idTransaction").value = idTransaction
+                    document.getElementById("description_edit").value = description
+                    document.querySelector(".type_edit").value = type
+                    document.getElementById("value_edit").value = value
+                    document.querySelector(".data_edit").value = new Date(createdAt).toISOString().split('T')[0];
+                    document.querySelector(".category_edit").value = category
                 });
             });
-        }); */
-
-
-        const rows = document.querySelectorAll('table tbody tr');
-
-        rows.forEach(row => {
-        const cells = row.getElementsByTagName('td');
-
-        const idTransaction = cells[0].innerHTML;
-        const description = cells[1].innerHTML;
-        const type = cells[2].innerHTML;
-        const category = cells[3].innerHTML;
-        const value = cells[4].innerHTML;
-        const createdAt = cells[5].innerHTML;
-
-        const editButton = row.querySelector('.edit-btn');
-        editButton.addEventListener('click', function() {
-
-            document.getElementsByName("idTransaction").value = description
-            document.getElementById("description_edit").value = description
-            document.querySelector(".type_edit").value = type
-            document.getElementById("value_edit").value = value
-            document.querySelector(".data_edit").value = new Date(createdAt).toISOString().split('T')[0];
-            document.querySelector(".category_edit").value = category
-        });
-        });
 
         });
     </script>

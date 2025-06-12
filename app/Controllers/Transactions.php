@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\TransactionsModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use Error;
 
 class Transactions extends BaseController
 {
@@ -15,7 +16,7 @@ class Transactions extends BaseController
         try {
             $data['description'] = $this->request->getPost('description');
             $data['type']        = $this->request->getPost('type');
-            $data['category']    = $this->request->getPost('category'); // Corrigido aqui
+            $data['category']    = $this->request->getPost('category');
             $data['value']       = $this->request->getPost('value');
             $data['date']        = $this->request->getPost('date');
 
@@ -39,22 +40,42 @@ class Transactions extends BaseController
     }
 
 
-    public function edit()
+    public function editTransaction()
     {
+        $session = session();
+
         try {
             $idTransaction = $this->request->getPost('idTransaction');
 
             $data['description'] = $this->request->getPost('description_edit');
             $data['type']        = $this->request->getPost('type_edit');
-            $data['category']    = $this->request->getPost('category_edit'); 
+            $data['category']    = $this->request->getPost('category_edit');
             $data['value']       = $this->request->getPost('value_edit');
-            $data['date']        = $this->request->getPost('date_edit');
+            $data['created_at']        = $this->request->getPost('date_edit');
+
+            if (empty($idTransaction)) {
+                $session->setFlashdata('flash', [
+                    'type'    => 'error',
+                    'message' => 'Erro ao editar transação.'
+                ]);
+                return redirect()->to('transactions');
+            }
 
             $transactionModel = new TransactionsModel();
             $transactionModel->update($idTransaction, $data);
 
+            $session->setFlashdata('flash', [
+                'type'    => 'success',
+                'message' => 'Transação editada com sucesso!'
+            ]);
+
             return redirect()->to('transactions');
         } catch (\Throwable $th) {
+            $session->setFlashdata('flash', [
+                'type'    => 'error',
+                'message' => 'Erro ao editar transação.'
+            ]);
+
             return redirect()->to('transactions');
         }
     }
