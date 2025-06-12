@@ -318,4 +318,52 @@
             });
 
         });
+<<<<<<< HEAD
     </script>
+=======
+    </script>
+
+<!-- Chart Section -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Gráfico de Receitas x Despesas</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="financeChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    const financeChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Receitas', 'Despesas'],
+            datasets: [{
+                label: 'R$ por Tipo',
+                data: [<?= $totalRevenues ?>, <?= $totalExpenses ?>],
+                backgroundColor: ['rgba(40, 167, 69, 0.6)', 'rgba(220, 53, 69, 0.6)'],
+                borderColor: ['rgba(40, 167, 69, 1)', 'rgba(220, 53, 69, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+>>>>>>> 9bf2a59e2395a3d68caac24d3b7bce281a1468da

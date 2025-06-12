@@ -9,7 +9,11 @@ class TransactionsModel extends Model
     protected $table            = 'transactions';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
+<<<<<<< HEAD
     protected $returnType       = 'array';
+=======
+    protected $returnType       = 'array'; 
+>>>>>>> 9bf2a59e2395a3d68caac24d3b7bce281a1468da
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

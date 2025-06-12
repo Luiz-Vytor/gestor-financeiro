@@ -93,4 +93,20 @@ class Transactions extends BaseController
             return redirect()->to('transactions');
         }
     }
+<<<<<<< HEAD
+=======
+
+    public function filter()
+    {
+        $start_date = $this->request->getGet('start_date');
+        $end_date = $this->request->getGet('end_date');
+        $type = $this->request->getGet('type');
+        $category = $this->request->getGet('category');
+
+        $transactions = $this->transactionModel->filterTransactions($start_date, $end_date, $type, $category);
+
+        return $this->response->setJSON(['transactions' => $transactions]);
+    }
+
+>>>>>>> 9bf2a59e2395a3d68caac24d3b7bce281a1468da
 }
