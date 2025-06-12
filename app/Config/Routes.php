@@ -6,9 +6,14 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/', 'Auth::index');
+$routes->get('/login', 'Auth::LoginScreen'); 
 $routes->get('/registration', 'Auth::registrationScreen');
-$routes->get('/registerUser', 'Auth::registerUser');
+$routes->get('/first-login', 'Auth::firstLoginScreen'); 
+
+$routes->post('/loginSubmit', 'Auth::loginSubmit');
+$routes->post('/register-user', 'Auth::registerUser');
+$routes->get('/logout', 'Auth::logout');
+
 
 $routes->get('/transactions', 'Home::index'); 
 

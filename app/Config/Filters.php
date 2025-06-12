@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\UserIsLoggedIn;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -34,6 +35,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'isLogged'      => UserIsLoggedIn::class
     ];
 
     /**
@@ -69,9 +71,16 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+            'isLogged' => [
+                'except' => [
+                    '/login',
+                    '/first-login',
+                    '/registration',
+                    '/loginSubmit',
+                    '/register-user',
+                    '/logout',
+                ]
+            ]
         ],
         'after' => [
             // 'honeypot',
