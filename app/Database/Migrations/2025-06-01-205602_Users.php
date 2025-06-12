@@ -14,10 +14,6 @@ class UsersTable extends Migration
                 'constraint' => 11,
                 'auto_increment' => true
             ],
-            'id_company' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
             'username' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
@@ -25,22 +21,6 @@ class UsersTable extends Migration
             'password' => [
                 'type' => 'VARCHAR',
                 'constraint' => 250,
-            ],
-            'name' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
-            ],
-            'email' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
-            ],
-            'phone' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
-            ],
-            'cargo' => [ 
-                'type' => 'VARCHAR',
-                'constraint' => 50,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
