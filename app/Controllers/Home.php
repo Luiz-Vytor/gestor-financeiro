@@ -12,7 +12,14 @@ class Home extends BaseController
     {
         $TransactionsModel = new TransactionsModel();
 
-        $dataTransactions = $TransactionsModel->findAll();
+
+        $transactionsFiltered = session()->getFlashdata('transactionsFiltered');
+
+        if ($transactionsFiltered) {
+            $dataTransactions = $transactionsFiltered;
+        } else {
+            $dataTransactions = $TransactionsModel->findAll();
+        }
 
         $allRevenues = $TransactionsModel->where('type', 'Receita')->findAll();
         $data['totalRevenues'] = array_reduce($allRevenues, function ($carry, $item) {

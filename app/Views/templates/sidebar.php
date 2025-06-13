@@ -1,9 +1,8 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
    <!-- Brand Logo -->
-      <a style="padding: 10px;" href="/home" class="brand-link d-flex align-items-center justify-content-center">
-    <a style="padding: 10px;" href="#" class="brand-link d-flex align-items-center justify-content-center">
-    <span style="font-size: medium;" class="brand-text font-weight-light">Gestor Financeiro</span>
+   <a style="padding: 10px;" href="#" class="brand-link d-flex align-items-center justify-content-center">
+     <span style="font-size: medium;" class="brand-text font-weight-light">Gestor Financeiro</span>
    </a>
 
    <!-- Sidebar -->
