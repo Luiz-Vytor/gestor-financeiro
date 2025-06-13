@@ -65,49 +65,13 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <form action="<?= base_url("transactions/filter") ?>" method="post">
-                            <div class="form-group d-flex flex-row align-content-center justify-content-center nowrap">
-                                <div class="w-100 d-flex flex-row align-items-end">
-                                    <div>
-                                        <label for="select-filter">FILTRO</label>
-                                        <select class="form-control" name="filter" id="select-filter" required>
-                                            <option selected disabled value="">Selecione uma opção</option>
-
-                                            <optgroup label="TIPO">
-                                                <option value="Tipo:Receita">Receita</option>
-                                                <option value="Tipo:Despesa">Despesa</option>
-                                            </optgroup>
-
-                                            <optgroup label="CATEGORIA">
-                                                <option value="Categoria:Alimentação">Alimentação</option>
-                                                <option value="Categoria:Transporte">Transporte</option>
-                                                <option value="Categoria:Salário">Salário</option>
-                                                <option value="Categoria:Gastos Extras">Gastos Extras</option>
-                                            </optgroup>
-                                        </select>
-                                        
-                                    </div>
-
-                                    <div class="ml-2 d-flex align-items-center justify-content-center">
-                                        <button type="submit" class="btn btn-primary ml-2">
-                                            <i class="bi bi-search"></i> Pesquisar
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </form>
-                    </div>
-
                 </div>
             </div>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body">     
+                            <div class="card-body">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -355,9 +319,8 @@
 
         });
     </script>
-    </script>
 
-    <!-- Chart Section -->
+<!-- Chart Section -->
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -374,29 +337,29 @@
     </div>
 
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('financeChart').getContext('2d');
-        const financeChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Receitas', 'Despesas'],
-                datasets: [{
-                    label: 'R$ por Tipo',
-                    data: [<?= $totalRevenues ?>, <?= $totalExpenses ?>],
-                    backgroundColor: ['rgba(40, 167, 69, 0.6)', 'rgba(220, 53, 69, 0.6)'],
-                    borderColor: ['rgba(40, 167, 69, 1)', 'rgba(220, 53, 69, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    const financeChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Receitas', 'Despesas'],
+            datasets: [{
+                label: 'R$ por Tipo',
+                data: [<?= $totalRevenues ?>, <?= $totalExpenses ?>],
+                backgroundColor: ['rgba(40, 167, 69, 0.6)', 'rgba(220, 53, 69, 0.6)'],
+                borderColor: ['rgba(40, 167, 69, 1)', 'rgba(220, 53, 69, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
