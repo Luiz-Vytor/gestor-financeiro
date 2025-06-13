@@ -9,15 +9,18 @@ class TransactionsModel extends Model
     protected $table            = 'transactions';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-<<<<<<< HEAD
     protected $returnType       = 'array';
-=======
-    protected $returnType       = 'array'; 
->>>>>>> 9bf2a59e2395a3d68caac24d3b7bce281a1468da
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id', 'type', 'category', 'value', 'description', 'created_at', 'updated_at', 'deleted_at'
+        'id',
+        'type',
+        'category',
+        'value',
+        'description',
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -49,4 +52,25 @@ class TransactionsModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function filterTransactions($dataFilter)
+    {
+        try {
+            if (!empty($dataFilter)) {
+                $dataForFilter = explode(":", $dataFilter);
+
+                $group = $dataForFilter[0];
+                $value = $dataForFilter[1];
+
+                if ($group == "Categoria") {
+                    return $this->where('category', $value)->findAll();
+                } else if ($group == "Tipo") {
+                    return $this->where('type', $value)->findAll();
+                }
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 }

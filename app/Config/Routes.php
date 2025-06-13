@@ -14,10 +14,11 @@ $routes->post('/loginSubmit', 'Auth::loginSubmit');
 $routes->post('/register-user', 'Auth::registerUser');
 $routes->get('/logout', 'Auth::logout');
 
-
 $routes->get('/transactions', 'Home::index'); 
 
 $routes->post('/transactions/register', 'Transactions::register'); 
 $routes->post('/transactions/editTransaction', 'Transactions::editTransaction'); 
 $routes->get('/transactions/delete/', 'Transactions::delete'); 
-$routes->get('/transactions/delete/(:num)', 'Transactions::delete/$1'); 
+$routes->get('/transactions/delete/(:num)', 'Transactions::delete/$1');
+
+$routes->post('/transactions/filter', 'Transactions::filter'); 
