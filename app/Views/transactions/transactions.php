@@ -252,27 +252,6 @@
         </div>
     </div>
 
-    <!-- Modal Confirm Delete -->
-    <!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="deleteModalLabel">Confirme a remoção</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="mb-0">Tem certeza que deseja excluir esse registro?</p>
-                </div>
-                <div class="modal-footer">
-
-                    <a href="#" id="confirmDeleteBtn" class="btn btn-danger">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <?php if (session()->getFlashdata('flash')) :
         $flash = session()->getFlashdata('flash');
     ?>
